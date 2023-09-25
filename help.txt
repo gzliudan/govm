@@ -1,0 +1,36 @@
+About:
+    Golang version manager(govm), v1.0.0.
+
+Usage
+    govm [options]
+
+Options:
+    h, help             Display this help
+    v, version          Show govm version
+    c, current          Print current golang version
+    l, local            List golang versions which is installed locally
+    r, remote [VER]     List remote golang versions
+    i, install <VER>    Install golang version <VER>
+    u, use <VER>        Use golang version <VER>
+    d, delete <VER>     Detele golang version <VER>
+
+Examples:
+    govm h
+    govm help
+    govm v
+    govm version
+    govm c
+    govm current
+    govm l
+    govm local
+    govm r
+    govm remote
+    govm r 1.21
+    govm remote 1.21
+    govm remote
+    govm i 1.19.13
+    govm install 1.14.15
+    govm u 1.19.13
+    govm use 1.14.15
+    govm d 1.19.13
+    govm delete 1.14.15
