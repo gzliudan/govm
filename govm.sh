@@ -2,12 +2,11 @@ function govm_help() {
     if [[ -s ${GOVM_DIR}/help.txt ]]; then
         cat ${GOVM_DIR}/help.txt
         return 0
-    else 
+    else
         echo "Not find help file: ${GOVM_DIR}/help.txt"
         return 1
     fi
 }
-
 
 function govm_version() {
     if [[ $# != 0 ]]; then
@@ -19,7 +18,6 @@ function govm_version() {
 
     return 0
 }
-
 
 function govm_show_current() {
     if [[ $# != 0 ]]; then
@@ -37,7 +35,6 @@ function govm_show_current() {
 
     return 0
 }
-
 
 function govm_list_local() {
     if [[ $# != 0 ]]; then
@@ -57,7 +54,6 @@ function govm_list_local() {
     fi
 }
 
-
 function govm_list_remote_all() {
     if [[ $# != 0 ]]; then
         echo "Usage: ${FUNCNAME[@]}"
@@ -73,7 +69,6 @@ function govm_list_remote_all() {
 
     cat "${FILE}"
 }
-
 
 function govm_list_remote_some() {
     if [[ $# != 1 ]]; then
@@ -91,7 +86,6 @@ function govm_list_remote_some() {
 
     grep --color=never "^${GO_VER}$\|^${GO_VER}\." "${FILE}"
 }
-
 
 function govm_install_golang_ver() {
     if [[ $# != 1 ]]; then
@@ -119,7 +113,6 @@ function govm_install_golang_ver() {
     fi
 }
 
-
 function govm_use_golang_ver() {
     if [[ $# != 1 ]]; then
         echo "Usage: ${FUNCNAME[@]} <GO_VER>"
@@ -128,7 +121,7 @@ function govm_use_golang_ver() {
 
     GO_VER="$1"
     GO_DIR="golang/go-${GO_VER}"
-    
+
     if [ -x ${GOVM_DIR}/${GO_DIR}/bin/go ]; then
         ln -snf ${GOVM_DIR}/${GO_DIR} ${GOVM_DIR}/go
         go version
@@ -138,7 +131,6 @@ function govm_use_golang_ver() {
         return 2
     fi
 }
-
 
 function govm_delete_golang_ver() {
     if [[ $# != 1 ]]; then
@@ -160,7 +152,6 @@ function govm_delete_golang_ver() {
         return 2
     fi
 }
-
 
 function govm() {
     if [[ $# == 0 ]]; then
@@ -204,14 +195,15 @@ function govm() {
     return 1
 }
 
-
 export GOPATH=${HOME}/go
 
 # go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
 if [[ -s ${GOVM_DIR}/.env ]]; then
-    export $( cat ${GOVM_DIR}/.env | sed '/^\s*#/d' | xargs )
+    vars=$(cat ${GOVM_DIR}/.env | sed '/^\s*#/d;/^\s*$/d' | xargs)
+    if [[ -n "${vars}" ]]; then
+        export ${vars}
+    fi
 fi
-
 
 echo ${PATH} | grep -qv "${HOME}/go/bin" && export PATH=${HOME}/go/bin:${PATH}
 if [ -n "${GOVM_DIR}" ]; then
