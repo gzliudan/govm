@@ -80,14 +80,13 @@ function govm_list_remote_some() {
         return 1
     fi
 
-    GO_VER="$1"
     FILE="${GOVM_DIR}/versions.txt"
-
     if [[ ! -f "${FILE}" ]]; then
         echo "Not find file ${FILE} !"
         return 2
     fi
 
+    GO_VER=$(echo "$1" | grep -oP '[0-9.]+')
     grep --color=never "^${GO_VER}$\|^${GO_VER}\." "${FILE}" | while IFS= read -r line; do
         if [ -n "${line}" ]; then
             echo "v${line}"
@@ -101,7 +100,7 @@ function govm_install_golang_ver() {
         return 1
     fi
 
-    GO_VER="$1"
+    GO_VER=$(echo "$1" | grep -oP '[0-9.]+')
     GO_DIR="golang/go-${GO_VER}"
     GO_FILE="go${GO_VER}.linux-amd64.tar.gz"
 
@@ -127,7 +126,7 @@ function govm_use_golang_ver() {
         return 1
     fi
 
-    GO_VER="$1"
+    GO_VER=$(echo "$1" | grep -oP '[0-9.]+')
     GO_DIR="golang/go-${GO_VER}"
 
     if [ -x ${GOVM_DIR}/${GO_DIR}/bin/go ]; then
@@ -146,7 +145,7 @@ function govm_delete_golang_ver() {
         return 1
     fi
 
-    GO_VER="$1"
+    GO_VER=$(echo "$1" | grep -oP '[0-9.]+')
     GO_DIR="golang/go-${GO_VER}"
     GO_FILE="go${GO_VER}.linux-amd64.tar.gz"
 
