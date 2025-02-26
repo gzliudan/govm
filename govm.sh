@@ -44,7 +44,7 @@ function govm_list_local() {
 
     if [[ -d ${GOVM_DIR}/golang ]]; then
         for GO in $(ls ${GOVM_DIR}/golang/ | grep -oP "^go-\K[0-9.]+$"); do
-            echo ${GO}
+            echo "v${GO}"
         done
 
         return 0
@@ -67,7 +67,11 @@ function govm_list_remote_all() {
         return 2
     fi
 
-    cat "${FILE}"
+    while IFS= read -r line; do
+        if [ -n "${line}" ]; then
+            echo "v${line}"
+        fi
+    done <"${FILE}"
 }
 
 function govm_list_remote_some() {
@@ -84,7 +88,11 @@ function govm_list_remote_some() {
         return 2
     fi
 
-    grep --color=never "^${GO_VER}$\|^${GO_VER}\." "${FILE}"
+    grep --color=never "^${GO_VER}$\|^${GO_VER}\." "${FILE}" | while IFS= read -r line; do
+        if [ -n "${line}" ]; then
+            echo "v${line}"
+        fi
+    done
 }
 
 function govm_install_golang_ver() {
