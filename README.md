@@ -8,7 +8,7 @@ cd govm
 ./install.sh
 
 # setup golang environment in file .env, suchs as GOPROXY
-cp env.sample .env
+cp sample.env .env
 vi .env
 
 source ${HOME}/.bashrc
