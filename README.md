@@ -49,23 +49,23 @@ govm remote
 ### List some remote versions
 
 ```bash
-govm remote 1.23
+govm remote 1.25
 ```
 
 ### Install a version
 
 ```bash
-govm install 1.23.12
+govm install 1.25.2
 ```
 
 ### Use a version
 
 ```bash
-govm use 1.23.12
+govm use 1.25.2
 ```
 
 ### Delete a version
 
 ```bash
-govm delete 1.23.11
+govm delete 1.25.1
 ```
