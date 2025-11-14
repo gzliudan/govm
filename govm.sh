@@ -167,7 +167,7 @@ function govm_pull() {
     fi
 
     echo " Updating govm ..."
-    cd $(dirname $0)
+    cd ${GOVM_DIR}
     git reset --hard
     git pull
 
@@ -199,6 +199,9 @@ function govm() {
         elif [[ "$1" == "r" || "$1" == "remote" ]]; then
             govm_list_remote_all
             return $?
+        elif [[ "$1" == "p" || "$1" == "pull" ]]; then
+            govm_pull
+            return $?
         fi
     elif [[ $# == 2 ]]; then
         if [[ "$1" == "i" || "$1" == "install" ]]; then
@@ -212,9 +215,6 @@ function govm() {
             return $?
         elif [[ "$1" == "r" || "$1" == "remote" ]]; then
             govm_list_remote_some $2
-            return $?
-        elif [[ "$1" == "p"|| "$1" == "pull"]]; then
-            govm_pull
             return $?
         fi
     fi
