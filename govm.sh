@@ -166,7 +166,7 @@ function govm_pull() {
         return 1
     fi
 
-    ( cd "${GOVM_DIR}" && git reset --hard && git pull )
+    ( cd "${GOVM_DIR}" && git reset --hard >/dev/null && git pull )
 }
 
 function govm() {
