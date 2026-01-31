@@ -166,17 +166,7 @@ function govm_pull() {
         return 1
     fi
 
-    echo " Updating govm ..."
-    cd ${GOVM_DIR}
-    git reset --hard
-    git pull
-
-    if [[ $? -ne 0 ]]; then
-        echo "Fail to update govm!"
-        return 2
-    else
-        echo "Update govm ok"
-    fi
+    ( cd "${GOVM_DIR}" && git reset --hard && git pull )
 }
 
 function govm() {
