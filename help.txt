@@ -24,6 +24,6 @@ Examples:
     govm local
     govm remote
     govm remote v1.25
-    govm install v1.25.5
-    govm use v1.25.5
-    govm delete v1.25.4
+    govm install v1.25.6
+    govm use v1.25.6
+    govm delete v1.25.5
