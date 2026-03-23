@@ -1,6 +1,8 @@
-GOVM_DIR=$(cd $(dirname $0); pwd)
+#!/bin/bash
 
-echo -e "\nexport GOVM_DIR=${GOVM_DIR}" >> ${HOME}/.bashrc
-echo -e "source \${GOVM_DIR}/govm.sh\n" >> ${HOME}/.bashrc
+GOVM_DIR=$(cd "$(dirname "$0")" || exit; pwd)
 
-echo 'Install OK! Please relogin or run: source ${HOME}/.bashrc'
+echo -e "\nexport GOVM_DIR=${GOVM_DIR}" >> "${HOME}"/.bashrc
+echo -e "source \${GOVM_DIR}/govm.sh\n" >> "${HOME}"/.bashrc
+
+echo "Install OK! Please relogin or run: source ${HOME}/.bashrc"
