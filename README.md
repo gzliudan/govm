@@ -61,17 +61,17 @@ govm remote 1.25
 ### Install a version
 
 ```bash
-govm install 1.25.8
+govm install 1.25.9
 ```
 
 ### Use a version
 
 ```bash
-govm use 1.25.8
+govm use 1.25.9
 ```
 
 ### Delete a version
 
 ```bash
-govm delete 1.25.7
+govm delete 1.25.8
 ```
