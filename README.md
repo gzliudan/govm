@@ -67,7 +67,7 @@ govm install 1.25.14
 ### Use a version
 
 ```bash
-govm use 1.25.13
+govm use 1.25.14
 ```
 
 ### Delete a version
